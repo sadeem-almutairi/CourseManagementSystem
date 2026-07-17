@@ -22,16 +22,28 @@ public class RegistrationGui extends javax.swing.JFrame {
     private ArrayList<Student> students;
 private ArrayList<Course> courses;
     public RegistrationGui() {
-       initComponents();
-RegistrationStatusbox.removeAllItems();
-RegistrationStatusbox.addItem("Registered");
-RegistrationStatusbox.addItem("Dropped");
-RegistrationStatusbox.addItem("Completed");
-RegistrationStatusbox.addItem("Failed");
-Helpers.readFile();
-loadTable();
-loadStudents();
-loadCourses();
+ initComponents();
+    SemesterBox.removeAllItems();
+    SemesterBox.addItem("1");
+    SemesterBox.addItem("2");
+    SemesterBox.addItem("3");
+    SemesterBox.addItem("4");
+    SemesterBox.addItem("5");
+    SemesterBox.addItem("6");
+    SemesterBox.addItem("7");
+    SemesterBox.addItem("8");
+
+    
+    RegistrationStatusbox.removeAllItems();
+    RegistrationStatusbox.addItem("Registered");
+    RegistrationStatusbox.addItem("Dropped");
+    RegistrationStatusbox.addItem("Completed");
+    RegistrationStatusbox.addItem("Failed");
+
+    Helpers.readFile();
+    loadTable();
+    loadStudents();
+    loadCourses();
     }
 private void loadTable() {
 
@@ -75,12 +87,14 @@ private void loadCourses() {
     coursemanagement.Helpers.readFile();
 
     courses = coursemanagement.Helpers.courses;
-System.out.println("Courses = " + courses.size());
+
     CourseIDbox.removeAllItems();
+    CourseCodeBox.removeAllItems();
 
     for (Course c : courses) {
 
         CourseIDbox.addItem(String.valueOf(c.getCourseId()));
+        CourseCodeBox.addItem(c.getCourseCode());
 
     }
 }
@@ -100,7 +114,6 @@ System.out.println("Courses = " + courses.size());
         StudentNamelbl = new javax.swing.JLabel();
         CourseIDlbl = new javax.swing.JLabel();
         CourseCodelbl = new javax.swing.JLabel();
-        CourseCodetxt = new javax.swing.JTextField();
         Semesterlbl = new javax.swing.JLabel();
         RegistrationDatelbl = new javax.swing.JLabel();
         RegistrationStatuslbl = new javax.swing.JLabel();
@@ -117,6 +130,7 @@ System.out.println("Courses = " + courses.size());
         SemesterBox = new javax.swing.JComboBox<>();
         RegistrationDatetxt = new javax.swing.JTextField();
         RegistrationStatusbox = new javax.swing.JComboBox<>();
+        CourseCodeBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,8 +150,6 @@ System.out.println("Courses = " + courses.size());
         CourseIDlbl.setText("Course ID");
 
         CourseCodelbl.setText("Course Code");
-
-        CourseCodetxt.addActionListener(this::CourseCodetxtActionPerformed);
 
         Semesterlbl.setText("Semester");
 
@@ -188,6 +200,9 @@ System.out.println("Courses = " + courses.size());
         RegistrationStatusbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         RegistrationStatusbox.addActionListener(this::RegistrationStatusboxActionPerformed);
 
+        CourseCodeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CourseCodeBox.addActionListener(this::CourseCodeBoxActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,10 +252,10 @@ System.out.println("Courses = " + courses.size());
                                             .addComponent(RegistrationDatelbl))
                                         .addGap(39, 39, 39)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CourseCodetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CourseIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(SemesterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(RegistrationDatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(RegistrationDatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CourseCodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(211, 211, 211)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Addbtn, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -277,8 +292,8 @@ System.out.println("Courses = " + courses.size());
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Clearbtn)
-                    .addComponent(CourseCodetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CourseCodelbl))
+                    .addComponent(CourseCodelbl)
+                    .addComponent(CourseCodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SemesterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,22 +318,18 @@ System.out.println("Courses = " + courses.size());
         // TODO add your handling code here:
     }//GEN-LAST:event_RegistrationIDtxtActionPerformed
 
-    private void CourseCodetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseCodetxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CourseCodetxtActionPerformed
-
     private void AddbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddbtnActionPerformed
         try {
 
-    Registration registration = new Registration(
-            RegistrationIDtxt.getText(),
-            StudentIDbox.getSelectedItem().toString(),
-            StudentNamebox.getSelectedItem().toString(),
-            Integer.parseInt(CourseIDbox.getSelectedItem().toString()),
-            CourseCodetxt.getText(),
-            SemesterBox.getSelectedItem().toString(),
-            RegistrationDatetxt.getText(),
-            RegistrationStatusbox.getSelectedItem().toString());
+   Registration registration = new Registration(
+        RegistrationIDtxt.getText(),
+        StudentIDbox.getSelectedItem().toString(),
+        StudentNamebox.getSelectedItem().toString(),
+        Integer.parseInt(CourseIDbox.getSelectedItem().toString()),
+        CourseCodeBox.getSelectedItem().toString(),
+        SemesterBox.getSelectedItem().toString(),
+        RegistrationDatetxt.getText(),
+        RegistrationStatusbox.getSelectedItem().toString());
 
     if (manager.addRegistration(registration)) {
 
@@ -366,12 +377,12 @@ Registration registration = manager.searchRegistration(id);
 if (registration != null) {
 
     StudentIDbox.setSelectedItem(registration.getStudentId());
-    StudentNamebox.setSelectedItem(registration.getStudentName());
-    CourseIDbox.setSelectedItem(String.valueOf(registration.getCourseId()));
-    CourseCodetxt.setText(registration.getCourseCode());
-    SemesterBox.setSelectedItem(registration.getSemester());
-    RegistrationDatetxt.setText(registration.getRegistrationDate());
-    RegistrationStatusbox.setSelectedItem(registration.getRegistrationStatus());
+StudentNamebox.setSelectedItem(registration.getStudentName());
+CourseIDbox.setSelectedItem(String.valueOf(registration.getCourseId()));
+CourseCodeBox.setSelectedItem(registration.getCourseCode());
+SemesterBox.setSelectedItem(registration.getSemester());
+RegistrationDatetxt.setText(registration.getRegistrationDate());
+RegistrationStatusbox.setSelectedItem(registration.getRegistrationStatus());
 
     javax.swing.JOptionPane.showMessageDialog(this, "Registration Found");
 
@@ -388,7 +399,7 @@ if (registration != null) {
         StudentIDbox.getSelectedItem().toString(),
         StudentNamebox.getSelectedItem().toString(),
         Integer.parseInt(CourseIDbox.getSelectedItem().toString()),
-        CourseCodetxt.getText(),
+        CourseCodeBox.getSelectedItem().toString(),
         SemesterBox.getSelectedItem().toString(),
         RegistrationDatetxt.getText(),
         RegistrationStatusbox.getSelectedItem().toString());
@@ -406,13 +417,13 @@ loadTable();
     }//GEN-LAST:event_UpdatebtnActionPerformed
 
     private void ClearbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearbtnActionPerformed
-      RegistrationIDtxt.setText("");
-CourseCodetxt.setText("");
+     RegistrationIDtxt.setText("");
 RegistrationDatetxt.setText("");
 
 StudentIDbox.setSelectedIndex(0);
 StudentNamebox.setSelectedIndex(0);
 CourseIDbox.setSelectedIndex(0);
+CourseCodeBox.setSelectedIndex(0);
 SemesterBox.setSelectedIndex(0);
 RegistrationStatusbox.setSelectedIndex(0);
     }//GEN-LAST:event_ClearbtnActionPerformed
@@ -461,17 +472,26 @@ if (index >= 0) {
 
     Course c = courses.get(index);
 
-    CourseCodetxt.setText(c.getCourseCode());
+    CourseCodeBox.setSelectedItem(c.getCourseCode());
 
 }
     }//GEN-LAST:event_CourseIDboxActionPerformed
 
     private void SemesterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SemesterBoxActionPerformed
-       SemesterBox.removeAllItems();
-SemesterBox.addItem("Fall");
-SemesterBox.addItem("Spring");
-SemesterBox.addItem("Summer");
+      
     }//GEN-LAST:event_SemesterBoxActionPerformed
+
+    private void CourseCodeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseCodeBoxActionPerformed
+         int index = CourseCodeBox.getSelectedIndex();
+
+    if (index >= 0) {
+
+        Course c = courses.get(index);
+
+        CourseIDbox.setSelectedItem(String.valueOf(c.getCourseId()));
+
+    }
+    }//GEN-LAST:event_CourseCodeBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -501,8 +521,8 @@ SemesterBox.addItem("Summer");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Addbtn;
     private javax.swing.JButton Clearbtn;
+    private javax.swing.JComboBox<String> CourseCodeBox;
     private javax.swing.JLabel CourseCodelbl;
-    private javax.swing.JTextField CourseCodetxt;
     private javax.swing.JComboBox<String> CourseIDbox;
     private javax.swing.JLabel CourseIDlbl;
     private javax.swing.JButton Deletebtn;

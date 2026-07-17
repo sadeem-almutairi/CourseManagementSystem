@@ -16,7 +16,7 @@ public class Helpers {
     //saves the complete course list to courses.txt
     public static void writeFile() {
     try {
-        String fileName =Helpers.class.getResource("").getPath() + "/courses.txt";
+        String fileName ="courses.txt";
 
         FileOutputStream fileOut =new FileOutputStream(fileName);
 
@@ -38,7 +38,7 @@ public class Helpers {
  public static void readFile() {
     try {
         String fileName =
-                Helpers.class.getResource("").getPath() + "/courses.txt";
+              "courses.txt";
 
         FileInputStream fileIn =
                 new FileInputStream(fileName);

@@ -17,7 +17,7 @@ public class Helpers {
     public static void writeFile(ArrayList<Student> studentsList) {
 
         try {
-            String fileName = Helpers.class.getResource("").getPath() + "/students.txt";
+            String fileName = "students.txt";
 
             FileOutputStream fileOut = new FileOutputStream(fileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -40,7 +40,7 @@ public class Helpers {
         ArrayList<Student> students = new ArrayList<>();
 
         try {
-            String fileName = Helpers.class.getResource("").getPath() + "/students.txt";
+           String fileName = "students.txt";
 
             FileInputStream fileIn = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -53,6 +53,7 @@ public class Helpers {
             System.out.println("Students loaded successfully.");
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return students;
