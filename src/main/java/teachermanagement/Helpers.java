@@ -16,7 +16,7 @@ public class Helpers {
     public static void writeFile() {
 
         try {
-            String fileName = Helpers.class.getResource("").getPath() + "/teachers.txt";
+            String fileName = "teachers.txt";
 
             FileOutputStream fileOut = new FileOutputStream(fileName);
 
@@ -35,8 +35,7 @@ public class Helpers {
     public static void readFile() {
 
         try {
-            String fileName =
-                    Helpers.class.getResource("").getPath() + "/teachers.txt";
+            String fileName = "teachers.txt";
             
             File file = new File(fileName);
             if (!file.exists()) {
