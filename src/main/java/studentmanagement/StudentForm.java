@@ -118,15 +118,21 @@ tblStudents.getColumnModel().getColumn(7).setPreferredWidth(120); // Status
 
         jLabel1.setText("Student ID");
 
+        txtStudentID.addActionListener(this::txtStudentIDActionPerformed);
+
         jLabel2.setText("Student Name");
+
+        txtStudentName.addActionListener(this::txtStudentNameActionPerformed);
 
         jLabel3.setText("Program");
 
         cmbProgram.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BSCS", "BSSE", "BBA", "MBA" }));
+        cmbProgram.addActionListener(this::cmbProgramActionPerformed);
 
         jLabel11.setText("Semester");
 
         cmbSemester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        cmbSemester.addActionListener(this::cmbSemesterActionPerformed);
 
         jLabel4.setText("Phone");
 
@@ -138,9 +144,12 @@ tblStudents.getColumnModel().getColumn(7).setPreferredWidth(120); // Status
 
         jLabel9.setText("CGPA");
 
+        txtCGPA.addActionListener(this::txtCGPAActionPerformed);
+
         jLabel10.setText("Status");
 
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVE", "GRADUATED", "SUSPENDED", "INACTIVE" }));
+        cmbStatus.addActionListener(this::cmbStatusActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -659,6 +668,18 @@ cmbStatus.setSelectedItem(student.getStatus().toString());
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+
+    int choice = JOptionPane.showConfirmDialog(
+        this,
+        "Are you sure you want to clear all fields?",
+        "Confirm Clear",
+        JOptionPane.YES_NO_OPTION
+    );
+
+    if (choice != JOptionPane.YES_OPTION) {
+    return;
+    }    
+        
     txtStudentID.setText("");
     txtStudentName.setText("");
     txtPhone.setText("");
@@ -830,6 +851,30 @@ if (choice == JOptionPane.YES_OPTION) {
 
 
     }//GEN-LAST:event_btnReportActionPerformed
+
+    private void cmbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbStatusActionPerformed
+
+    private void txtStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIDActionPerformed
+
+    private void txtStudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentNameActionPerformed
+
+    private void cmbProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProgramActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProgramActionPerformed
+
+    private void cmbSemesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSemesterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSemesterActionPerformed
+
+    private void txtCGPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCGPAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCGPAActionPerformed
 
     /**
      * @param args the command line arguments
