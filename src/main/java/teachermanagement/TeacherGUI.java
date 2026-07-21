@@ -406,8 +406,7 @@ public class TeacherGUI extends javax.swing.JFrame {
             String email = txtEmail.getText();
             String department = departmentCombo.getSelectedItem().toString();
             String specialization = txtSpecialization.getText();
-            TeacherStatus status = TeacherStatus.valueOf(
-            statusCombo.getSelectedItem().toString());
+            TeacherStatus status = TeacherStatus.valueOf( statusCombo.getSelectedItem().toString());
             
             if (phoneNumber.length() != 8) {
               JOptionPane.showMessageDialog(this,"Phone number must contain 8 digits.");
@@ -423,6 +422,13 @@ public class TeacherGUI extends javax.swing.JFrame {
     if (manager.addTeacher(teacher)) {
         JOptionPane.showMessageDialog(this,"Teacher added successfully.");
         refreshTable();
+        txtTeacherId.setText("");
+        txtTeacherName.setText("");
+        txtPhoneNumber.setText("");
+        txtEmail.setText("");
+        txtSpecialization.setText("");
+        departmentCombo.setSelectedIndex(0);
+        statusCombo.setSelectedIndex(0);
     } 
     else {
         JOptionPane.showMessageDialog(this, "Teacher ID already exists.");
@@ -467,19 +473,25 @@ public class TeacherGUI extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
         int teacherId = Integer.parseInt(txtTeacherId.getText());
-        boolean deleted = manager.deleteTeacher(teacherId);
 
-        if (deleted) {
-         JOptionPane.showMessageDialog(this,"Teacher deleted successfully.");
-         refreshTable();
-        }
-        else {
-        JOptionPane.showMessageDialog(this,"Teacher ID not found.");
+        int choice = JOptionPane.showConfirmDialog(
+                this, "Are you sure you want to delete this teacher?","Confirm Delete",
+                JOptionPane.YES_NO_OPTION );
+
+        if (choice == JOptionPane.YES_OPTION) {
+            boolean deleted = manager.deleteTeacher(teacherId);
+
+            if (deleted) {
+                JOptionPane.showMessageDialog( this, "Teacher deleted successfully." );
+                refreshTable();
+            } else {
+                JOptionPane.showMessageDialog(this,"Teacher ID not found." );
+            }
         }
 
-       } catch (NumberFormatException e) {
-          JOptionPane.showMessageDialog(this,"Teacher ID must be a number.");
-       }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog( this,"Teacher ID must be a number.");
+    }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnViewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReportActionPerformed
