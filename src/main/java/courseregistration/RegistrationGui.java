@@ -8,6 +8,8 @@ package courseregistration;
  *
  * @author engha
  */
+import javax.swing.JOptionPane;
+import coursemanagement.CourseStatus;
 import java.util.ArrayList;
 import studentmanagement.Student;
 import coursemanagement.Course;
@@ -131,10 +133,12 @@ private void loadCourses() {
         RegistrationDatetxt = new javax.swing.JTextField();
         RegistrationStatusbox = new javax.swing.JComboBox<>();
         CourseCodeBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        Counttxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("Course Registration System");
         jLabel1.setToolTipText("");
@@ -197,118 +201,144 @@ private void loadCourses() {
         SemesterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         SemesterBox.addActionListener(this::SemesterBoxActionPerformed);
 
+        RegistrationDatetxt.addActionListener(this::RegistrationDatetxtActionPerformed);
+
         RegistrationStatusbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         RegistrationStatusbox.addActionListener(this::RegistrationStatusboxActionPerformed);
 
         CourseCodeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         CourseCodeBox.addActionListener(this::CourseCodeBoxActionPerformed);
 
+        jLabel2.setText("Student Registered");
+
+        Counttxt.addActionListener(this::CounttxtActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(396, 396, 396)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(341, 341, 341)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Clearbtn)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(RegistrationStatusbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(StudentNamelbl)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(StudentNamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(StudentIDlbl)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(StudentIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(RegistrationIDlbl)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(RegistrationIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(338, 338, 338)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(RegistrationStatuslbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                        .addComponent(RegistrationStatusbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CourseIDlbl)
-                                            .addComponent(CourseCodelbl)
-                                            .addComponent(Semesterlbl))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(RegistrationDatelbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(RegistrationDatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(Semesterlbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(SemesterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(StudentIDlbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(StudentIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(RegistrationIDlbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(RegistrationIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(StudentNamelbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(StudentNamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(RegistrationStatuslbl)
-                                            .addComponent(RegistrationDatelbl))
-                                        .addGap(39, 39, 39)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CourseIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SemesterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(RegistrationDatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CourseCodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(211, 211, 211)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Addbtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Searchbtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Updatebtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Deletebtn, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(160, 160, 160))
+                                            .addComponent(CourseIDlbl)
+                                            .addComponent(CourseCodelbl))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(CourseCodeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CourseIDbox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(439, 439, 439))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel2)
+                                .addGap(32, 32, 32)
+                                .addComponent(Counttxt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(396, 396, 396)
+                        .addComponent(jLabel1)))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(Addbtn)
+                .addGap(18, 18, 18)
+                .addComponent(Searchbtn)
+                .addGap(29, 29, 29)
+                .addComponent(Updatebtn)
+                .addGap(18, 18, 18)
+                .addComponent(Deletebtn)
+                .addGap(27, 27, 27)
+                .addComponent(Clearbtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RegistrationIDlbl)
+                    .addComponent(RegistrationIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StudentIDlbl)
+                    .addComponent(StudentIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(StudentNamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(StudentNamelbl)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CourseIDlbl)
+                    .addComponent(CourseIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CourseCodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(CourseCodelbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Semesterlbl)
+                            .addComponent(SemesterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RegistrationDatelbl)
+                            .addComponent(RegistrationDatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RegistrationStatuslbl)
+                            .addComponent(RegistrationStatusbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Addbtn)
-                    .addComponent(RegistrationIDtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RegistrationIDlbl))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Searchbtn)
-                    .addComponent(StudentIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StudentIDlbl))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Updatebtn)
-                    .addComponent(StudentNamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StudentNamelbl))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Deletebtn)
-                    .addComponent(CourseIDbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CourseIDlbl))
-                .addGap(18, 18, 18)
+                    .addComponent(Clearbtn))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Clearbtn)
-                    .addComponent(CourseCodelbl)
-                    .addComponent(CourseCodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SemesterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Semesterlbl))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RegistrationDatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RegistrationDatelbl))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RegistrationStatusbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RegistrationStatuslbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(Counttxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -330,6 +360,20 @@ private void loadCourses() {
         SemesterBox.getSelectedItem().toString(),
         RegistrationDatetxt.getText(),
         RegistrationStatusbox.getSelectedItem().toString());
+   Course c = courses.get(CourseIDbox.getSelectedIndex());
+
+if (c.getStatus() != CourseStatus.OFFERED) {
+    JOptionPane.showMessageDialog(this,
+            "This course is not offered.");
+    return;
+}
+int registered = manager.countRegistrationsByCourse(c.getCourseId());
+
+if (registered >= c.getMaxSeats()) {
+    JOptionPane.showMessageDialog(this,
+            "No available seats.");
+    return;
+}
 
     if (manager.addRegistration(registration)) {
 
@@ -353,7 +397,12 @@ private void loadCourses() {
 
         javax.swing.JOptionPane.showMessageDialog(this,
                 "Registration Added Successfully");
+int courseId = Integer.parseInt(CourseIDbox.getSelectedItem().toString());
 
+Counttxt.setText(String.valueOf(
+        manager.countRegistrationsByCourse(courseId)
+        
+));
     } else {
 
         javax.swing.JOptionPane.showMessageDialog(this,
@@ -370,10 +419,16 @@ private void loadCourses() {
     }//GEN-LAST:event_AddbtnActionPerformed
 
     private void SearchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchbtnActionPerformed
-       String id = RegistrationIDtxt.getText();
+      String id = RegistrationIDtxt.getText();
 
-Registration registration = manager.searchRegistration(id);
+Registration registration;
 
+if (!id.trim().isEmpty()) {
+    registration = manager.searchRegistration(id);
+} else {
+    registration = manager.searchByStudentId(
+            StudentIDbox.getSelectedItem().toString());
+}
 if (registration != null) {
 
     StudentIDbox.setSelectedItem(registration.getStudentId());
@@ -417,7 +472,17 @@ loadTable();
     }//GEN-LAST:event_UpdatebtnActionPerformed
 
     private void ClearbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearbtnActionPerformed
-     RegistrationIDtxt.setText("");
+     int choice = JOptionPane.showConfirmDialog(
+        this,
+        "Are you sure you want to clear all fields?",
+        "Confirm Clear",
+        JOptionPane.YES_NO_OPTION
+);
+
+if (choice != JOptionPane.YES_OPTION) {
+    return;
+}
+        RegistrationIDtxt.setText("");
 RegistrationDatetxt.setText("");
 
 StudentIDbox.setSelectedIndex(0);
@@ -426,16 +491,32 @@ CourseIDbox.setSelectedIndex(0);
 CourseCodeBox.setSelectedIndex(0);
 SemesterBox.setSelectedIndex(0);
 RegistrationStatusbox.setSelectedIndex(0);
+JOptionPane.showMessageDialog(this, "Fields cleared successfully.");
     }//GEN-LAST:event_ClearbtnActionPerformed
 
     private void DeletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletebtnActionPerformed
        String id = RegistrationIDtxt.getText();
+       
+int choice = JOptionPane.showConfirmDialog(
+        this,
+        "Are you sure you want to delete this registration?",
+        "Confirm Delete",
+        JOptionPane.YES_NO_OPTION
+);
 
+if (choice != JOptionPane.YES_OPTION) {
+    return;
+}
 if (manager.deleteRegistration(id)) {
 
     javax.swing.JOptionPane.showMessageDialog(this, "Deleted Successfully");
 Helpers.writeFile();
 loadTable();
+int courseId = Integer.parseInt(CourseIDbox.getSelectedItem().toString());
+
+Counttxt.setText(String.valueOf(
+        manager.countRegistrationsByCourse(courseId)
+));
 } else {
 
     javax.swing.JOptionPane.showMessageDialog(this, "Registration Not Found");
@@ -493,6 +574,14 @@ if (index >= 0) {
     }
     }//GEN-LAST:event_CourseCodeBoxActionPerformed
 
+    private void CounttxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CounttxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CounttxtActionPerformed
+
+    private void RegistrationDatetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrationDatetxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RegistrationDatetxtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -521,6 +610,7 @@ if (index >= 0) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Addbtn;
     private javax.swing.JButton Clearbtn;
+    private javax.swing.JTextField Counttxt;
     private javax.swing.JComboBox<String> CourseCodeBox;
     private javax.swing.JLabel CourseCodelbl;
     private javax.swing.JComboBox<String> CourseIDbox;
@@ -541,6 +631,7 @@ if (index >= 0) {
     private javax.swing.JLabel StudentNamelbl;
     private javax.swing.JButton Updatebtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

@@ -35,6 +35,18 @@ public class RegistrationManagement {
     }
     return null;
     }
+    public Registration searchByStudentId(String studentId) {
+
+    for (Registration r : registrationList) {
+
+        if (r.getStudentId().equalsIgnoreCase(studentId)) {
+            return r;
+        }
+
+    }
+
+    return null;
+}
     public boolean deleteRegistration(String registrationId){
     Registration registration = searchRegistration(registrationId);
     if (registration != null){
@@ -73,4 +85,18 @@ public class RegistrationManagement {
     return false;
 
     }
+    public int countRegistrationsByCourse(int courseId) {
+
+    int count = 0;
+
+    for (Registration r : registrationList) {
+
+        if (r.getCourseId() == courseId) {
+            count++;
+        }
+
+    }
+
+    return count;
+}
 }
